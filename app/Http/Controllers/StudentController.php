@@ -48,9 +48,9 @@ class StudentController extends Controller
         $data['insert_userid'] = Auth::id();
 
 
-        // $qrCode = QrCode::format('png')
-        //     ->size(200)
-        //     ->generate($request->student_code);
+        $qrCode = QrCode::format('png')
+            ->size(200)
+            ->generate($request->student_code);
 
             $path = 'qrcodes/'.$request->student_code.'.png';
             Storage::disk('public')->put($path, $qrCode);
