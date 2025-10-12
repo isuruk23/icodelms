@@ -34,7 +34,7 @@ class AttendentsController extends Controller
             return back()->with('error', 'Student not found');
         }
 
-        Attendance::create([
+        Attendents::create([
             'student_id' => $student->id,
             'class_id' => $request->class_id,
             'attendance_date' => now()->toDateString(),
