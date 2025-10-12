@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\Branch;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
@@ -12,7 +15,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-         $teachers = Teacher::with('branch')->get();
+         $teachers = Teacher::get();
         return view('teachers.index', compact('teachers'));
     }
 

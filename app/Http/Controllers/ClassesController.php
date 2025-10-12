@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\Course;
+use App\Models\Teacher;
+use App\Models\Branch;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 class ClassesController extends Controller
 {
@@ -12,7 +17,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-         $classes = Classes::with(['course', 'teacher', 'branch'])->get();
+         $classes = Classes::get();
         return view('classes.index', compact('classes'));
     }
 

@@ -53,7 +53,7 @@ class StudentController extends Controller
         //     ->generate($request->student_code);
 
             $path = 'qrcodes/'.$request->student_code.'.png';
-            // Storage::disk('public')->put($path, $qrCode);
+            Storage::disk('public')->put($path, $qrCode);
 
             
             $data['barcode_image_path'] = $path;

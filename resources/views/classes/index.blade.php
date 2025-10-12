@@ -31,6 +31,9 @@
                     <td>{{ $class->schedule }}</td>
                     <td>
                         <a href="{{ route('classes.edit', $class->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('attendance.scan', $class->id) }}" class="btn btn-success btn-sm">
+            Take Attendance
+        </a>
                     </td>
                 </tr>
             @endforeach
