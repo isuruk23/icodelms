@@ -30,20 +30,38 @@ class AttendentsController extends Controller
     public function store(Request $request) {
         $student = Student::where('student_code', $request->student_code)->first();
 
-        if (!$student) {
-            return back()->with('error', 'Student not found');
-        }
+    if (!$student) {
+        return response()->json(['status' => 'error', 'message' => 'Student not found']);
+    }
 
-        Attendents::create([
+    $hasPayment = Payment::where('student_id', $student->id)
+        ->where('class_id', $request->class_id)
+        ->whereMonth('payment_date', now()->month)
+        ->whereYear('payment_date', now()->year)
+        ->where('status', 'paid')
+        ->exists();
+
+    if (!$hasPayment) {
+        return response()->json([
+            'status' => 'payment_required',
             'student_id' => $student->id,
-            'class_id' => $request->class_id,
-            'attendance_date' => now()->toDateString(),
-            'time_in' => now()->toTimeString(),
-            'status' => 'present',
-            'scanned_by' => auth()->user()->full_name ?? 'System'
+            'message' => 'Payment not completed for this month.'
         ]);
+    }
 
-        return back()->with('success','Attendance marked for '.$student->full_name);
+    Attendance::create([
+        'student_id' => $student->id,
+        'class_id' => $request->class_id,
+        'attendance_date' => now()->toDateString(),
+        'time_in' => now()->toTimeString(),
+        'status' => 'present',
+        'scanned_by' => auth()->user()->full_name ?? 'System',
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Attendance marked for ' . $student->full_name
+    ]);
     }
 
 

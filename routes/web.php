@@ -18,6 +18,7 @@ use App\Http\Controllers\AttendentsController;
 
 
 
+
 Route::resources([
     'courses' => CourseController::class,
     'students' => StudentController::class,
@@ -30,7 +31,6 @@ Route::resources([
     'roles' => RoleController::class,
     'branches' => BranchController::class,
     'institutes' => InstituteController::class,
-    // 'attendance' => AttendanceController::class,
     'student-classes' => StudentClassController::class
 ]);
 
