@@ -60,8 +60,7 @@ let alertBox = document.getElementById('alertBox');
 
 scanner.addListener('scan', function (student_code) {
     markAttendance(student_code);
-    alert(student_code);
-
+   
 });
 
 function showAlert(type, message) {
