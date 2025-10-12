@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('attendents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('class_id');
+            $table->date('attendance_date');
+            $table->time('time_in')->nullable();
+            $table->enum('status', ['present', 'absent', 'late'])->default('present');
+            $table->string('scanned_by', 100)->nullable();
             $table->timestamps();
         });
     }
