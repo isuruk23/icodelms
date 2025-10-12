@@ -33,13 +33,13 @@ class BranchController extends Controller
     public function store(Request $request)
     {
        $validated = $request->validate([
-            'institute_id' => 'required|exists:institutes,id',
-            'branch_code' => 'required,branch_code',
+            'institute_id' => 'required',
+            'branch_code' => 'required',
         ]);
 
         $data = $request->all();
         $data['insert_userid'] = Auth::id();
-          dd($data);
+        
         Branch::create($data);
         return redirect()->route('branches.index')->with('success', 'Branch created successfully.');
 
