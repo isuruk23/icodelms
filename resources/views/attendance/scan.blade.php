@@ -28,7 +28,7 @@
         <form id="paymentForm">
           @csrf
           <input type="hidden" name="student_id" id="modal_student_id">
-          <input type="hidden" name="class_id" id="modal_class_id" value="{{ $class->id }}">
+          <input type="hidden" name="class_id" id="modal_class_id" value="{{ $class_id }}">
           <div class="mb-3">
             <label>Amount</label>
             <input type="number" name="amount" step="0.01" class="form-control" required>
@@ -78,7 +78,7 @@ function markAttendance(student_code) {
         },
         body: JSON.stringify({
             student_code: student_code,
-            class_id: '{{ $class->id }}'
+            class_id: '{{ $class_id }}'
         })
     })
     .then(res => res.json())
