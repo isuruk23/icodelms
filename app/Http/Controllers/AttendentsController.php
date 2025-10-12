@@ -33,7 +33,7 @@ class AttendentsController extends Controller
     if (!$student) {
         return response()->json(['status' => 'error', 'message' => 'Student not found']);
     }
-
+dd($request);
     $hasPayment = Payment::where('student_id', $student->id)
         ->where('class_id', $request->class_id)
         ->whereMonth('payment_date', now()->month)

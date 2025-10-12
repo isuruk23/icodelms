@@ -71,7 +71,7 @@ function showAlert(type, message) {
 }
 
 function markAttendance(student_code) {
-    alert(student_code);
+    
     fetch('{{ route('attendance.store') }}', {
         method: 'POST',
         headers: {
@@ -80,7 +80,7 @@ function markAttendance(student_code) {
         },
         body: JSON.stringify({
             student_code: student_code,
-            class_id: '{{ $class_id }}'
+            class_id: 1, // Pass class_id if needed
         })
     })
     .then(res => res.json())
