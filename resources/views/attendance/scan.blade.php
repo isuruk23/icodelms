@@ -105,6 +105,16 @@ function markAttendance(student_code) {
     });
 }
 
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        let backCam = cameras.find(cam => cam.name.toLowerCase().includes('back')) || cameras[0];
+        scanner.start(backCam);
+    } else {
+        alert('No cameras found.');
+    }
+}).catch(function (e) {
+    console.error(e);
+});
 
 // // Handle payment submission
 // document.getElementById('paymentForm').addEventListener('submit', function(e) {
