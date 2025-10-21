@@ -29,10 +29,10 @@ class AttendentsController extends Controller
      */
     public function store(Request $request) {
         $student = Student::where('student_code', $request->student_code)->first();
- dd($request);
-    // if (!$student) {
-    //     return response()->json(['status' => 'error', 'message' => 'Student not found']);
-    // }
+/
+    if ($student) {
+        return response()->json(['status' => 'error', 'message' => 'Student not found']);
+    }
 
     // $hasPayment = Payment::where('student_id', $student->id)
     //     ->where('class_id', $request->class_id)
