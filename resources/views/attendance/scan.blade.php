@@ -83,7 +83,8 @@ function markAttendance(student_code) {
             class_id: 1 // dynamic class ID
         },
         success: function(data) {
-            alert(data); // For debugging
+            
+            console.log(data); // For debugging
 
             if (data.status === 'success') {
                 showAlert('success', data.message);
@@ -99,7 +100,7 @@ function markAttendance(student_code) {
             }
         },
         error: function(xhr, status, error) {
-            alert(error);
+            console.error(error);
             showAlert('danger', 'Something went wrong: ' + error);
         }
     });
