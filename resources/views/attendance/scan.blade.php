@@ -95,6 +95,7 @@ function showAlert(type, message) {
 
     function markAttendance(student_code) {
     alert(student_code);
+    alert(class_id);
 
     $.ajax({
         url: '{{ route('attendance.store') }}',
@@ -103,7 +104,7 @@ function showAlert(type, message) {
         data: {
             _token: '{{ csrf_token() }}',
             student_code: student_code,
-            class_id: '{{ $class->id }}' // dynamic class ID
+            class_id: '{{ $class_id }}' // dynamic class ID
         },
         success: function(data) {
             console.log(data); // For debugging
