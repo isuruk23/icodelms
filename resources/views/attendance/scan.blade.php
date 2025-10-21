@@ -54,7 +54,7 @@
 
 @section('script')
 <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
- <script>
+<!-- <script>
 let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
 
 scanner.addListener('scan', function (content) {
@@ -74,8 +74,8 @@ Instascan.Camera.getCameras().then(function (cameras) {
     console.error(e);
     alert('Error accessing camera: ' + e);
 });
-</script> 
-<!-- <script>
+</script> -->
+<script>
 let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
 let alertBox = document.getElementById('alertBox');
 
@@ -92,7 +92,7 @@ function showAlert(type, message) {
 }
 
 function markAttendance(student_code) {
-
+alert(student_code);
     
     fetch('{{ route('attendance.store') }}', {
         method: 'POST',
@@ -155,5 +155,5 @@ Instascan.Camera.getCameras().then(function (cameras) {
 }).catch(function (e) {
     console.error(e);
 });
-</script> -->
+</script>
 @endsection
