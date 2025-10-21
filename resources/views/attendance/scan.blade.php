@@ -93,10 +93,39 @@ function showAlert(type, message) {
 
 
 
-function markAttendance(student_code) {
+    function markAttendance(student_code) {
     alert(student_code);
 
- 
+    $.ajax({
+        url: '{{ route('attendance.store') }}',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            _token: '{{ csrf_token() }}',
+            student_code: student_code,
+            class_id: '{{ $class->id }}' // dynamic class ID
+        },
+        success: function(data) {
+            console.log(data); // For debugging
+
+            if (data.status === 'success') {
+                showAlert('success', data.message);
+            } 
+            else if (data.status === 'payment_required') {
+                // Show payment modal
+                $('#modal_student_id').val(data.student_id);
+                var modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+                modal.show();
+            } 
+            else {
+                showAlert('danger', data.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            showAlert('danger', 'Something went wrong: ' + error);
+        }
+    });
 }
 
 
