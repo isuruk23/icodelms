@@ -94,7 +94,7 @@ function showAlert(type, message) {
 
 
 function markAttendance(student_code) {
-    // alert(student_code);
+    alert(student_code);
 
     $.ajax({
         url: '{{ route('attendance.store') }}',
