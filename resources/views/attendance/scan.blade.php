@@ -92,33 +92,43 @@ function showAlert(type, message) {
 }
 
 function markAttendance(student_code) {
-alert(student_code);
-    
-    fetch('{{ route('attendance.store') }}', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({
+
+    function markAttendance(student_code) {
+    alert(student_code);
+
+    $.ajax({
+        url: '{{ route('attendance.store') }}',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            _token: '{{ csrf_token() }}',
             student_code: student_code,
-            class_id: 1, // Pass class_id if needed
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        dd(data);
-        if (data.status === 'success') {
-            showAlert('success', data.message);
-        } else if (data.status === 'payment_required') {
-            // Show payment modal
-            document.getElementById('modal_student_id').value = data.student_id;
-            new bootstrap.Modal(document.getElementById('paymentModal')).show();
-        } else {
-            showAlert('danger', data.message);
+            class_id: '{{ $class->id }}' // dynamic class ID
+        },
+        success: function(data) {
+            console.log(data); // For debugging
+
+            if (data.status === 'success') {
+                showAlert('success', data.message);
+            } 
+            else if (data.status === 'payment_required') {
+                // Show payment modal
+                $('#modal_student_id').val(data.student_id);
+                var modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+                modal.show();
+            } 
+            else {
+                showAlert('danger', data.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            showAlert('danger', 'Something went wrong: ' + error);
         }
-    })
-    .catch(err => console.error(err));
+    });
+}
+
+
 }
 
 // Handle payment submission
