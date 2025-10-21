@@ -103,7 +103,7 @@ function markAttendance(student_code) {
         data: {
             _token: '{{ csrf_token() }}',
             student_code: student_code,
-            class_id: '{{ $class->id }}' // dynamic class ID
+            class_id: '{{ $class_id }}' // dynamic class ID
         },
         success: function(data) {
             console.log(data); // For debugging
