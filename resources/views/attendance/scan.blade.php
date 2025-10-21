@@ -79,8 +79,7 @@ function markAttendance(student_code) {
         dataType: 'json',
         data: {
             _token: '{{ csrf_token() }}',
-            student_code: student_code,
-            class_id: '{{ $class_id }}' // dynamic class ID
+            student_code: student_code
         },
         success: function(data) {
             console.log(data); // For debugging
