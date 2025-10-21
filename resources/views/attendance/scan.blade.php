@@ -92,7 +92,7 @@ function showAlert(type, message) {
 }
 
 function markAttendance(student_code) {
-alert(student_code);
+
     
     fetch('{{ route('attendance.store') }}', {
         method: 'POST',
