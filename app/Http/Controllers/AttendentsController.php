@@ -41,6 +41,8 @@ class AttendentsController extends Controller
         ->where('status', 'paid')
         ->exists();
 
+        dd($hasPayment);
+
     if (!$hasPayment) {
         return response()->json([
             'status' => 'payment_required',
