@@ -91,9 +91,9 @@ function showAlert(type, message) {
     setTimeout(() => alertBox.classList.add('d-none'), 4000);
 }
 
-function markAttendance(student_code) {
 
-    function markAttendance(student_code) {
+
+function markAttendance(student_code) {
     alert(student_code);
 
     $.ajax({
@@ -129,7 +129,7 @@ function markAttendance(student_code) {
 }
 
 
-}
+
 
 // Handle payment submission
 document.getElementById('paymentForm').addEventListener('submit', function(e) {
