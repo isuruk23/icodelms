@@ -107,6 +107,7 @@ function markAttendance(student_code) {
     })
     .then(res => res.json())
     .then(data => {
+        dd(data);
         if (data.status === 'success') {
             showAlert('success', data.message);
         } else if (data.status === 'payment_required') {
