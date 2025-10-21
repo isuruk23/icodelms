@@ -94,7 +94,7 @@ function showAlert(type, message) {
 
 
 function markAttendance(student_code) {
-    alert(student_code);
+    // alert(student_code);
 
     $.ajax({
         url: '{{ route('attendance.store') }}',
@@ -106,7 +106,7 @@ function markAttendance(student_code) {
             class_id: '{{ $class_id }}' // dynamic class ID
         },
         success: function(data) {
-            console.log(data); // For debugging
+            alert(data); // For debugging
 
             if (data.status === 'success') {
                 showAlert('success', data.message);
