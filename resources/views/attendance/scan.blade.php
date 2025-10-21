@@ -56,6 +56,27 @@
 <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 <script>
 let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
+
+scanner.addListener('scan', function (content) {
+    document.getElementById('student_code').value = content;
+    document.getElementById('attendanceForm').submit();
+});
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        // Try to find the back camera
+        let backCam = cameras.find(cam => cam.name.toLowerCase().includes('back')) || cameras[0];
+        scanner.start(backCam);
+    } else {
+        alert('No cameras found.');
+    }
+}).catch(function (e) {
+    console.error(e);
+    alert('Error accessing camera: ' + e);
+});
+</script>
+<!-- <script>
+let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
 let alertBox = document.getElementById('alertBox');
 
 scanner.addListener('scan', function (student_code) {
@@ -133,5 +154,5 @@ Instascan.Camera.getCameras().then(function (cameras) {
 }).catch(function (e) {
     console.error(e);
 });
-</script>
+</script> -->
 @endsection
