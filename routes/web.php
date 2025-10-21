@@ -31,11 +31,12 @@ Route::resources([
     'roles' => RoleController::class,
     'branches' => BranchController::class,
     'institutes' => InstituteController::class,
-    'student-classes' => StudentClassController::class
+    'student-classes' => StudentClassController::class,
+    'attendance' => AttendentsController::class
 ]);
 
 Route::get('/attendance/scan/{class_id}', [AttendentsController::class, 'scan'])->name('attendance.scan');
-Route::post('/attendance/store', [AttendentsController::class, 'store'])->name('attendance.store');
+// Route::post('/attendance/store', [AttendentsController::class, 'store'])->name('attendance.store');
 
 
 Route::get('/', function () {
