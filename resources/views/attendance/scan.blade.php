@@ -80,10 +80,9 @@ function markAttendance(student_code) {
         data: {
             _token: '{{ csrf_token() }}',
             student_code: student_code,
-            class_id: 1 // dynamic class ID
+            class_id: '{{ $class_id }}' // dynamic class ID
         },
         success: function(data) {
-            
             console.log(data); // For debugging
 
             if (data.status === 'success') {
@@ -105,6 +104,7 @@ function markAttendance(student_code) {
         }
     });
 }
+
 
 Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
