@@ -71,7 +71,7 @@ function showAlert(type, message) {
 }
 
 function markAttendance(student_code) {
-alert(@gmail.com);
+alert(student_code);
     
     fetch('{{ route('attendance.store') }}', {
         method: 'POST',
@@ -80,7 +80,7 @@ alert(@gmail.com);
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
         body: JSON.stringify({
-            student_code: @gmail.com,
+            student_code: student_code,
             class_id: 1, // Pass class_id if needed
         })
     })
